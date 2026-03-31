@@ -1,159 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quartermaster Corps</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0e0e0e;
-      color: #fff;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quartermaster Corps</title>
 
-    header {
-      background: #1a1a1a;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 2px solid #c9a34e;
-    }
+<style>
+:root{
+  --bg:#090b09;
+  --panel:#101510;
+  --gold:#e0b94f;
+  --text:#f4f5f1;
+  --muted:#bcc5ba;
+}
 
-    header h1 {
-      margin: 0;
-      color: #c9a34e;
-      letter-spacing: 2px;
-    }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
 
-    nav {
-      display: flex;
-      justify-content: center;
-      background: #111;
-      border-bottom: 1px solid #333;
-    }
+/* HEADER */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  backdrop-filter:blur(10px);
+  background:rgba(9,11,9,.9);
+  border-bottom:1px solid rgba(224,185,79,.2);
+}
+.header-inner{
+  max-width:1200px;margin:auto;padding:16px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.brand{display:flex;align-items:center;gap:10px;text-transform:uppercase;font-weight:bold}
+.brand img{width:32px}
+.menu-btn{cursor:pointer;font-size:22px;color:var(--gold)}
 
-    nav a {
-      padding: 14px 20px;
-      text-decoration: none;
-      color: #ddd;
-      transition: 0.3s;
-    }
+/* MEGA MENU */
+.menu-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.85);
+  display:none;z-index:200;
+}
+.menu-overlay.open{display:block}
+.mega{
+  background:#111;padding:40px;animation:slideDown .3s ease;
+}
+.mega-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1000px;margin:auto;
+}
+.mega a{display:block;padding:10px 0;color:#ccc;text-decoration:none}
+.mega a:hover{color:var(--gold);transform:translateX(5px)}
 
-    nav a:hover {
-      background: #c9a34e;
-      color: #000;
-    }
+/* HERO */
+.hero{
+  padding:100px 20px;text-align:center;
+  background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url('https://upload.wikimedia.org/wikipedia/commons/6/6f/Quartermaster_Corps_insignia.png');
+  background-size:cover;
+}
+.hero h1{font-size:48px;color:var(--gold)}
+.hero p{color:#ccc;margin-top:10px}
 
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1581093588401-22b6d3c7f8b6');
-      background-size: cover;
-      background-position: center;
-    }
+/* CONTENT */
+.container{max-width:1100px;margin:auto;padding:40px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{
+  background:var(--panel);
+  padding:20px;border-radius:12px;
+  border:1px solid rgba(224,185,79,.1);
+  transition:.2s;
+}
+.card:hover{transform:translateY(-5px);border-color:var(--gold)}
 
-    .hero h2 {
-      font-size: 42px;
-      margin-bottom: 10px;
-      color: #c9a34e;
-    }
+/* ANIMATIONS */
+@keyframes slideDown{
+  from{opacity:0;transform:translateY(-10px)}
+  to{opacity:1;transform:translateY(0)}
+}
 
-    .hero p {
-      font-size: 18px;
-      max-width: 600px;
-      margin: auto;
-      color: #ccc;
-    }
-
-    .section {
-      padding: 50px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: #1a1a1a;
-      padding: 20px;
-      border: 1px solid #333;
-      border-radius: 10px;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: #c9a34e;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      border-top: 1px solid #333;
-      color: #777;
-    }
-  </style>
+</style>
 </head>
 <body>
 
-<header>
-  <h1>Quartermaster Corps</h1>
-  <p>"Supporting the Force with Excellence"</p>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="menu-btn" onclick="openMenu()">☰</div>
+
+    <div class="brand">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Quartermaster_Corps_insignia.png">
+      <div>
+        <div>U.S. Army</div>
+        <small style="color:var(--muted)">Quartermaster Corps</small>
+      </div>
+    </div>
+
+    <div></div>
+  </div>
 </header>
 
-<nav>
-  <a href="#about">About</a>
-  <a href="#roles">Roles</a>
-  <a href="#operations">Operations</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<section class="hero">
-  <h2>Welcome to the Quartermaster Corps</h2>
-  <p>Ensuring logistics, supply, and operational readiness across all divisions. Precision. Reliability. Strength.</p>
-</section>
-
-<section id="about" class="section">
-  <h2>About Us</h2>
-  <p>The Quartermaster Corps is responsible for managing supplies, logistics, and operational support. We ensure that every unit is fully equipped and mission-ready at all times.</p>
-</section>
-
-<section id="roles" class="section">
-  <h2>Key Roles</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>Logistics Officer</h3>
-      <p>Oversees distribution and supply chain operations.</p>
-    </div>
-    <div class="card">
-      <h3>Supply Specialist</h3>
-      <p>Manages inventory and equipment allocation.</p>
-    </div>
-    <div class="card">
-      <h3>Transport Coordinator</h3>
-      <p>Handles movement of goods and personnel.</p>
+<div class="menu-overlay" id="menu">
+  <div class="mega">
+    <div class="mega-grid">
+      <div>
+        <h3 style="color:var(--gold)">About</h3>
+        <a href="#">Who We Are</a>
+        <a href="#">Mission</a>
+      </div>
+      <div>
+        <h3 style="color:var(--gold)">Operations</h3>
+        <a href="#">Logistics</a>
+        <a href="#">Supply Chain</a>
+      </div>
+      <div>
+        <h3 style="color:var(--gold)">Leadership</h3>
+        <a href="#">Command</a>
+        <a href="#">Officers</a>
+      </div>
     </div>
   </div>
+</div>
+
+<section class="hero">
+  <h1>Quartermaster Corps</h1>
+  <p>Supporting Forces Through Logistics, Supply, and Sustainment</p>
 </section>
 
-<section id="operations" class="section">
-  <h2>Operations</h2>
-  <p>Our corps ensure that </p>
-</section>
+<div class="container">
+  <div class="grid">
+    <div class="card">
+      <h3>Logistics Command</h3>
+      <p>Coordinates supply distribution and operational readiness.</p>
+    </div>
+    <div class="card">
+      <h3>Supply Management</h3>
+      <p>Maintains inventory, equipment, and provisioning systems.</p>
+    </div>
+    <div class="card">
+      <h3>Transportation</h3>
+      <p>Ensures movement of personnel and materials efficiently.</p>
+    </div>
+    <div class="card">
+      <h3>Field Support</h3>
+      <p>Provides sustainment for deployed units.</p>
+    </div>
+  </div>
+</div>
 
-<section id="contact" class="section">
-  <h2>Contact</h2>
-  <p>For inquiries regarding the Quartermaster Corps, please consult our Discord server along with our public documentation.</p>
-</section>
-
-<footer>
-  <p>&copy; 2026 | Quartermaster Corps / Zan's USAR. All rights reserved.</p>
-</footer>
+<script>
+function openMenu(){document.getElementById('menu').classList.add('open')}
+document.getElementById('menu').addEventListener('click',()=>{
+  document.getElementById('menu').classList.remove('open')
+})
+</script>
 
 </body>
-</html>
+</h
